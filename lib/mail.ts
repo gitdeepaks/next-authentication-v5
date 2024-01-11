@@ -2,6 +2,8 @@ import { Resend } from "resend";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const domain = process.env.NEXT_PUBLIC_APP_URL;
+
 // export const sendTwoFactorTokenMail = async (email: string, token: string) => {
 //   const conformLink = `http://localhost:3000/auth/verify?token=${token}`;
 // };
@@ -16,7 +18,7 @@ export const sendTwoFactorTokenMail = async (email: string, token: string) => {
 };
 
 export const sendVerificationMail = async (email: string, token: string) => {
-  const confirmLink = `http://localhost:3000/auth/new-verfication?token=${token}`;
+  const confirmLink = `${domain}/auth/new-verfication?token=${token}`;
 
   await resend.emails.send({
     from: "admin@deepaksankhyan.in",
